@@ -6,6 +6,7 @@
             <th>First Name</th>
             <th>Email</th>
             <th>Age</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -13,6 +14,7 @@
             <td>{{ employee.firstName }}</td>
             <td>{{ employee.emailId }}</td>
             <td>{{ employee.age }}</td>
+            <td><button (click)="editEmployee(employee.employeeId)" class="btn btn-info">Edit</button></td>
         </tr>
     </tbody>
     
