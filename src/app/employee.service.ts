@@ -19,9 +19,12 @@ export class EmployeeService {
   }
 
   getEmployeeById(id: number): Observable<Employee> {
-    const params = new HttpParams().set('id', id.toString());
-    return this.httpClient.get<Employee>(`${this.baseUrl}/fetch-employee`, { params });
-    // return this.httpClient.get<Employee>(`${this.baseUrl}/fetch-employee?id=${id}`);
+    // const params = new HttpParams().set('id', id.toString());
+    // return this.httpClient.get<Employee>(`${this.baseUrl}/fetch-employee`, { params });
+    return this.httpClient.get<Employee>(`${this.baseUrl}/fetch-employee?id=${id}`);
+  }
 
+  deleteEmployee(id:number): Observable<String>{
+    return this.httpClient.delete(`${this.baseUrl}/delete/${id}`,{responseType: 'text'});
   }
 }

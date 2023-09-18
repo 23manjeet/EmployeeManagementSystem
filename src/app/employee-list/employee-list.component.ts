@@ -15,22 +15,28 @@ export class EmployeeListComponent implements OnInit {
   constructor(private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit(): void {
-    // const employee1 = new Employee(1, 'John', 'john@abc.com', 25);
-    // const employee2 = new Employee(2, 'Jane Smith', 'smith@abc.com', 28);
-
-    // this.employees.push(employee1, employee2);
     this.getEmployees();
     console.log(this.employees);
   }
 
   private getEmployees() {
-    console.log("Inside getEmployees method")
     this.employeeService.getEmployeeList().subscribe(data => {
       this.employees = data;
     })
   }
 
-  public editEmployee(id:number) {
-    this.router.navigate(['update-employee',id])
+  public editEmployee(id: number) {
+    this.router.navigate(['update-employee', id]);
+  }
+
+  public deleteEmployee(id: number) {
+    this.employeeService.deleteEmployee(id).subscribe(data => {
+      console.log(data);
+      this.getEmployees();
+    },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
